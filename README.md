@@ -25,8 +25,13 @@ Based on the above four user types, the following transitions can be tested in t
 
 ## Unit Testing
 
-To run the vitest unit test cases in localhost:
+To run the unit test cases in localhost:
+
 ```
+git clone https://github.com/mapteb/angular-state-transitions.git
+cd angular-state-transtions
+npm install
+
 npm run test
 ```
 
@@ -34,9 +39,6 @@ npm run test
 
 To run the playwright e2e tests in localhost:
 ```
-git clone https://github.com/mapteb/angular-state-transitions.git
-cd angular-state-transtions
-npm install
 npx install playwright
 npx tsx e2e/setup/save-auth-state.ts << one time run to save login creds to playwright/.auth/ >>
 npm run e2e
