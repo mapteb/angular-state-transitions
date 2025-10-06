@@ -6,6 +6,8 @@
 /e2e/test-output/
 /.angular/
 .angular/
+*.bat
+**/*.txt
 
 # Node modules and dependency files
 /node_modules/
@@ -26,3 +28,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# VS Code
+.vscode/

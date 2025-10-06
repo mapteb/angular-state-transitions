@@ -1,0 +1,29 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<div class="container">
+  <div class="headerrow">
+    <div class="ghsrc"><a href="https://github.com/mapteb/angular-nested-layouts">Source</a>
+    | {{ user?.username }}
+    @if (isAdmin) {
+      | <span routerLink="/adminhome">Admin Home</span>
+    }
+      | <span routerLink="/signout">Sign Out</span>
+    </div>
+
+
+    <div class="hdritm"><span class="tgl"><a id="tglleftmenu" (click)="toggleLeftMenu()">Toggle Left Menu</a></span>
+    </div>
+    <br>
+  </div>
+  <div class="bodyrowcnr">
+    @if (isMenuVisible) {
+    <div class="menucolcnr">
+      <div class="menulbl"><a routerLink="/home/page1">Page 1</a><br></div>
+      <div class="menulbl"><a routerLink="/home/page2">Page 2</a><br></div>
+    </div>
+    }
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

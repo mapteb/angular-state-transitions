@@ -1,0 +1,51 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div>
+      NOTE: Use <strong>user</strong>/user to login with ROLE_USER (has access to Page 1 thru Page 5)<br /><br>
+      Use <strong>admin</strong>/admin to login with ROLE_ADMIN (has access to Page 1 thru Page 5 and /adminhome)<br><br />
+      Use <strong>guest</strong>/guest to login with ROLE_GUEST (has access to Page 1 and Page 2)<br><br>
+      All other usenames are invalid <br>
+    </div>
+    <div>
+      <br />
+      @if (error.length > 0) {
+      <div class="error">{{error}}</div>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>
+<p> &nbsp; &nbsp;  &nbsp; &nbsp; </p>
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <p>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input type="text" matInput formControlName="username" />
+          @if (isControlInvalid('username')) {
+          <mat-error>Username is required</mat-error>
+          }
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" />
+          @if (isControlInvalid('password')) {
+          <mat-error>Password is required</mat-error>
+          }
+        </mat-form-field>
+      </p>
+
+      @if (error.length && isControlInvalid('password')) {
+      <div class="error">{{error}}</div>
+      }
+
+      <div class="button">
+        <button type="submit" matButton>Login</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
