@@ -1,14 +1,17 @@
 # Angular State Transitions
 
-This project explores how angular v20 handles various view state transitions for the login and logout use cases. The following users and their roles are considered:
+This project explores view state transitions for users with different security roles in Angular v20. A demo of these transitions can be tested [here](https://mapteb.github.io/angular-state-transitions/).  
 
+
+## List of View Transitions
+
+The following users and their roles are considered:
+```
 1. user/user with ROLE.USER role with access to /home/** pages
 2. admin/admin with ROLE.ADMIN role with access to /home/** and /adminhome/** pages
 3. guest/guest with ROLE.GUEST role with access to /home/page1 and /home/page2 and no access to /home/page3/** pages
 4. Any other users name errors during login
-
-
-## List of View Transitions
+```
 
 Based on the above four user types, the following transitions can be tested in the [demo](https://mapteb.github.io/angular-state-transitions/) app:
 ```
