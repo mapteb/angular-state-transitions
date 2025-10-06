@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ci-cd-test-automation": {
+    "angular-state-transitions": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -54,10 +54,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ci-cd-test-automation:build:production"
+              "buildTarget": "angular-state-transitions:build:production"
             },
             "development": {
-              "buildTarget": "ci-cd-test-automation:build:development"
+              "buildTarget": "angular-state-transitions:build:development"
             }
           },
           "defaultConfiguration": "development"
