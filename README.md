@@ -10,7 +10,7 @@ This project explores how angular v20 handles various view state transitions for
 
 ## List of Transitions
 
-Based on the above four user types, the following transitions can be tested in the [demo]() app:
+Based on the above four user types, the following transitions can be tested in the [demo](https://mapteb.github.io/angular-state-transitions/) app:
 ```
 1. With no user creds, accessing /home should transition to the /login view
 2. With ROLE.USER creds, accessing /home should transition to the /home view
