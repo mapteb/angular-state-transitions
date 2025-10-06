@@ -8,7 +8,7 @@ This project explores how angular v20 handles various view state transitions for
 4. Any other users name errors during login
 
 
-## List of Transitions
+## List of View Transitions
 
 Based on the above four user types, the following transitions can be tested in the [demo](https://mapteb.github.io/angular-state-transitions/) app:
 ```
