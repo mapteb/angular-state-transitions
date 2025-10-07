@@ -30,26 +30,6 @@ export class Login implements OnInit {
 
   ngOnInit() {
     this.error = this.transitionsHelper.authenticationError();
-    // console.log(">> error: ", this.error);
-/*     this.activatedRoute.queryParams.subscribe(params => {
-      this.error = params['message'] ? params['message'] : '';
-      console.log(">> err: ", this.error);
-      // Use the message
-    });
-    // 3. Clear local storage on login page load 
-    console.log(">> clearing localstorage: ");
-    this.authService.logout(); */
-
-    // 1. Access the global history.state object
-    // No need to inject ActivatedRoute or Router if only accessing history.state
-    // const navigationState = history.state;
-
-    // 2. Check if the 'message' property was passed during the navigation
-    // if (navigationState && navigationState['message']) {
-    //   this.error = navigationState['message'];
-    // }
-
-    // 3. Clear local storage on login page load 
     console.log(">> clearing localstorage: ");
     this.transitionsHelper.logout();    
   }
@@ -63,7 +43,6 @@ export class Login implements OnInit {
     this.transitionsHelper.authenticate(user!);
     this.error = this.transitionsHelper.authenticationError();
   }
-
 
   isControlInvalid(controlName: string): boolean {
     const control = this.loginForm.get(controlName)!;
