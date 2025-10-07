@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { User } from '../guards/models/user';
+import { User } from '../transitions-helper/models/user';
 
 @Component({
   selector: 'app-admin-home',

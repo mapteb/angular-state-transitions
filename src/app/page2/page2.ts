@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 import { ROLE } from '../guards/role-enum';
+import { TransitionsHelper } from '../transitions-helper/transitions-helper';
+import { User } from '../transitions-helper/models/user';
 
 @Component({
   selector: 'app-page2',
@@ -10,8 +11,8 @@ import { ROLE } from '../guards/role-enum';
   styleUrl: './page2.css'
 })
 export class Page2 implements OnInit {
-  activatedRoute = inject(ActivatedRoute);
-  routeData = toSignal(this.activatedRoute.data);   
+  transitionsHelper = inject(TransitionsHelper);
+  user: User | undefined;
   isPage3Authorized: boolean = false;
   page3AllowedRoles = [ ROLE.ADMIN, ROLE.USER ]; // roles allowed to access page3
 
@@ -19,7 +20,7 @@ export class Page2 implements OnInit {
     console.log('>> loading page2');
   }
   ngOnInit(): void {
-    const user = this.routeData()?.['page2Data']; // 'user' matches the key defined in the route config
-    this.isPage3Authorized = this.page3AllowedRoles.includes(user.role);    
+    this.user = this.transitionsHelper.user; // 'user' matches the key defined in the route config
+    this.isPage3Authorized = this.user?.role !== undefined && this.page3AllowedRoles.includes(this.user.role as ROLE);    
   }
 }

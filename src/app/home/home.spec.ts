@@ -4,6 +4,8 @@ import { Home } from './home';
 
 import { describe, test, expect } from 'vitest';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideLibraryConfig } from '../transitions-helper/models/config';
 
 describe('Home', () => {
   let component: Home;
@@ -12,7 +14,12 @@ describe('Home', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Home],
-      providers: [provideRouter([]),]
+      providers: [provideRouter([]), provideHttpClient(),
+      provideLibraryConfig({
+        authEndpoint: '/users/authenticate',
+        initialPage: '/'
+      })
+      ]
     })
       .compileComponents();
 

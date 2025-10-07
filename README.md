@@ -2,6 +2,14 @@
 
 This project explores view state transitions for users with different security roles in an Angular v20 app. A demo of these transitions can be tested [here](https://mapteb.github.io/angular-state-transitions/).  
 
+This app uses a new architecture by adding a TransitionsHelper which has the following features:<br>
+1. Maintains data state across various view transitions,
+2. Acts as a provider of data for the components and auth guards, and
+3. Acts as a state transitions enabler.
+
+Use of the TransitionsHelper which provides the following benefits:
+1. Enables the components to be lightweight and be concerned only with getting the data and displaying the data.
+2. Enables merging the ResolveFn functionality with the CanActivateFn reducing the amount of code to be written and tested.
 
 ## List of View Transitions
 
@@ -42,9 +50,11 @@ npm run test
 
 To run the playwright e2e tests in localhost:
 ```
-1. npx install playwright
+1.0 npx install playwright
+
 2.1 ng serve << to start a localhost:4200 server in one cmd pad >>
-2.2 npx tsx e2e/setup/save-auth-state.ts << This is a one time run to save login creds to playwright/.auth/. Should be run in another cmd  pad >>
+2.2 npx tsx e2e/setup/save-auth-state.ts << This is a one time run to save login creds to playwright/.auth/. Should be run in another cmd pad >>
+
 3.1 stop the localhost:4200 server
 3.2 npm run e2e 
 ```

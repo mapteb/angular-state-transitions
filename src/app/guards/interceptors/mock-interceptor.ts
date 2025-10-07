@@ -1,7 +1,8 @@
 import { HttpEvent, HttpInterceptorFn, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
-import { User } from "../models/user";
+import { User } from "../../transitions-helper/models/user";
 
+// registered mock users
 const users: User[] = [{ id: 1, username: 'admin', password: 'admin' },
                        { id: 2, username: 'user', password: 'user' },
                        { id: 3, username: 'guest', password: 'guest' }];
@@ -16,9 +17,10 @@ export const mockInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>
 
 export const authenticate = (body: User): Observable<HttpEvent<unknown>> => {
     const { username, password } = body;
-    const user = users.find(x => x.username === username);
+    const user = users.find(x => x.username === username && x.password === password);
     if (!user) {
-        return error('Username or password is incorrect');
+        // return error('Username or password is incorrect');
+        return throwError(() => new HttpResponse({ status: 401, statusText: 'Username or password is incorrect' }));    
     }
     console.log(">> return auth body: ", body);
     return ok(

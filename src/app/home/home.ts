@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
-import { User } from '../guards/models/user';
+import { User } from '../transitions-helper/models/user';
 import { ROLE } from '../guards/role-enum';
+import { TransitionsHelper } from '../transitions-helper/transitions-helper';
 
 @Component({
   selector: 'app-home',
@@ -10,20 +11,18 @@ import { ROLE } from '../guards/role-enum';
   styleUrl: './home.css'
 })
 export class Home implements OnInit {
+  transitionsHelper = inject(TransitionsHelper);
   activatedRoute = inject(ActivatedRoute);
-  user: User | undefined; 
+  user: User | undefined;
   isAdmin = false;
 
-  constructor() {} 
+  constructor() { }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ user }) => {
-      this.user = user; // 'user' matches the key defined in the route config
-      console.log(">> home user: ", this.user); 
-      if (this.user && this.user.role == ROLE.ADMIN) {  
-        this.isAdmin = true;  
-      }
-    });
+    this.user = this.transitionsHelper.user;
+    if (this.user && this.user.role == ROLE.ADMIN) {
+      this.isAdmin = true;
+    }
   }
 
   isMenuVisible = true;

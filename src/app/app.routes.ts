@@ -1,18 +1,15 @@
 import { Routes } from '@angular/router';
-import { Page2 } from './page2/page2';
+import { AdminHome } from './admin-home/admin-home';
+import { AppError } from './app-error/app-error';
+import { authGuard } from './guards/auth-guard';
+import { ROLE } from './guards/role-enum';
+import { Home } from './home/home';
+import { Login } from './login/login';
 import { Page1 } from './page1/page1';
+import { Page2 } from './page2/page2';
 import { Page3 } from './page3/page3';
 import { Page4 } from './page4/page4';
-import { authGuard, roleGuard } from './guards/auth-guard';
 import { Page5 } from './page5/page5';
-import { Home } from './home/home';
-import { Signout } from './signout/signout';
-import { Login } from './login/login';
-import { AdminHome } from './admin-home/admin-home';
-import { ROLE } from './guards/role-enum';
-import { resolveHome } from './home/resolve-home';
-import { AppError } from './app-error/app-error';
-import { resolvePage2 } from './page2/resolve-page2';
 
 
 export const routes: Routes = [
@@ -25,12 +22,10 @@ export const routes: Routes = [
   { path: 'home', component: Home, 
     canActivate: [authGuard],
     data: {allowedRoles: [ROLE.ADMIN, ROLE.USER, ROLE.GUEST ]},
-    resolve: { user: resolveHome  },
     children: [
       { path: 'page1', component: Page1 },
       {
         path: 'page2', component: Page2,
-        resolve: { page2Data: resolvePage2 },        
       },
       {
         path: 'page3', component: Page3,
