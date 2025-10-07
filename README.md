@@ -1,6 +1,6 @@
 # Angular State Transitions
 
-This project explores view state transitions for users with different security roles in Angular v20. A demo of these transitions can be tested [here](https://mapteb.github.io/angular-state-transitions/).  
+This project explores view state transitions for users with different security roles in an Angular v20 app. A demo of these transitions can be tested [here](https://mapteb.github.io/angular-state-transitions/).  
 
 
 ## List of View Transitions
@@ -21,7 +21,7 @@ Based on the above four user types, the following transitions can be tested in t
 4. With ROLE.ADMIN creds, accessing /home should transition to the /home view containing a link to /adminhome view
 5. With ROLE.ADMIN creds, should be able to transition to the /adminhome view and all the /home/** views
 6. With ROLE.GUEST creds, should be able to transition to /home/page1 and /home/page2 and should not be able to view the page3/** links
-7. With ROLE.GUEST creds, if the user tried to access /home/page3 or /home/page3/page4 or /home/page3/page5 directly then should be redirected to the /login page with a user not authorized for page3 message 
+7. With ROLE.GUEST creds, if the user tried to access /home/page3 or /home/page3/page4 or /home/page3/page5 manually then should be redirected to the /login page with a user not authorized for page3 message << This step will not work in the above demo due to the static file hosting nature of github pages but can be tested in localhost >> 
 8. With username other than user|admin|guest submitting /login form should reload the /login view with an unknown user error message
 9. With the user signed out, accessing the browser back button should stay back in the /login view
 ```
@@ -42,7 +42,9 @@ npm run test
 
 To run the playwright e2e tests in localhost:
 ```
-npx install playwright
-npx tsx e2e/setup/save-auth-state.ts << one time run to save login creds to playwright/.auth/ >>
-npm run e2e
+1. npx install playwright
+2.1 ng serve << to start a localhost:4200 server in one cmd pad >>
+2.2 npx tsx e2e/setup/save-auth-state.ts << This is a one time run to save login creds to playwright/.auth/. Should be run in another cmd  pad >>
+3.1 stop the localhost:4200 server
+3.2 npm run e2e 
 ```
