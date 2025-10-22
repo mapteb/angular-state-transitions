@@ -43,7 +43,7 @@ git clone https://github.com/mapteb/angular-state-transitions.git
 cd angular-state-transtions
 npm install
 
-npm run test
+npm run test:ui
 ```
 
 ## e2e Testing
