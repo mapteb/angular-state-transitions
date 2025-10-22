@@ -2,7 +2,7 @@
 
 This project explores view state transitions for users with different security roles in an Angular v20 app. A demo of these transitions can be tested [here](https://mapteb.github.io/angular-state-transitions/).  
 
-This app uses a new architecture by adding a TransitionsHelper which has the following features:<br>
+This app uses a new architecture by adding a [TransitionsHelper]() which has the following features:<br>
 1. Maintains data state across various view transitions,
 2. Acts as a provider of data for the components and auth guards, and
 3. Acts as a state transitions enabler.

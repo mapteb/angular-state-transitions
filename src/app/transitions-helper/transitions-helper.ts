@@ -6,9 +6,13 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { ROLE } from "../guards/role-enum";
 import { Router } from "@angular/router";
 
-/* This TransitionsHelper acts as a provider of data for the components 
- * and auth guards and also as a state transitions enabler.
- * Maintains data state across various view transitions
+/* 
+ * The router file app.routes.ts handles external events like /login, /home, etc.
+ * This file, transitions-helper.ts, handles internal app events like 
+ * userNotFound, userNotAuthorized, authenticate, etc.
+ * This TransitionsHelper acts as a provider of data for the components 
+ * and also as a view transitions enabler.
+ * Maintains data state across various view transitions.
  */
 @Injectable({
     providedIn: 'root'  
@@ -21,6 +25,34 @@ export class TransitionsHelper {
     constructor() {
         console.log('>> TransitionsHelper instance created');
         this.user = this.getLoggedInUser() ? this.getLoggedInUser() : undefined; 
+    }
+
+    homeUserFound() {
+      // setup home data
+      this.user = this.getLoggedInUser() ? this.getLoggedInUser() : undefined;
+      // authGuard already takes care of the transition
+    }
+
+    userNotFound() {
+      // prevent back button nav
+      return this.router.createUrlTree(['/login']);
+    }
+
+    userNotAuthorized(message: string) {
+      this.authenticationError.set(message);   
+      this.router.navigate(['/login'], { replaceUrl: true, skipLocationChange: false  });
+    }
+
+    adminhomeUserFound() {
+      // setup adminhome data
+      this.user = this.getLoggedInUser() ? this.getLoggedInUser() : undefined;
+      // authGuard already takes care of the transition
+    }
+
+    page3UserFound() {
+      // setup page3 data
+      this.user = this.getLoggedInUser() ? this.getLoggedInUser() : undefined;
+      // authGuard already takes care of the transition
     }
 
     getLoggedInUser(): User {   
@@ -52,6 +84,7 @@ export class TransitionsHelper {
                     } else {
                       this.authenticationError.set("Unknown user");
                       console.log(">> login error...: ", this.authenticationError() );
+                      // this.router.createUrlTree(['/login']);
                       this.router.navigateByUrl('/login', {replaceUrl: true});
                     }
                   }
@@ -73,7 +106,7 @@ export class TransitionsHelper {
                   // return throwError(() => new Error('Login failed. Please try again.'));
                   this.authenticationError.set('Login failed. Please try again.');
                     console.error(`Unexpected error (${error.status}):`, error);
-                  this.router.navigate(['/login']);
+                  this.router.navigate(['/login', {replaceUrl: true}]);
                 }
               });
         
