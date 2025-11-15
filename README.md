@@ -2,12 +2,14 @@
 
 This project explores view state transitions for users with different security roles in an Angular v20 app. A demo of these transitions can be tested [here](https://mapteb.github.io/angular-state-transitions/).  
 
+## Features
 This app uses a new architecture by adding a [TransitionsHelper](https://github.com/mapteb/angular-state-transitions/blob/main/src/app/transitions-helper/transitions-helper.ts) which has the following features:<br>
 1. Maintains data state across various view transitions,
 2. Acts as a provider of data for the components and auth guards, and
-3. Acts as a state transitions enabler.
+3. Handles events raised by the views and enables view treansitions.
 
-Use of the TransitionsHelper which provides the following benefits:
+## Benefits
+Use of the TransitionsHelper provides the following benefits:
 1. Enables the components to be lightweight and be concerned only with getting the data and displaying the data.
 2. Enables merging the ResolveFn functionality with the CanActivateFn reducing the amount of code to be written and tested.
 
